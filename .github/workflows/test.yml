@@ -20,7 +20,8 @@ jobs:
       - name: Build
         run: |
           mkdir out
-          emcc test.cpp -o out/test.html
+          emcc test.cpp -o o.html
+          mv o.* out
         
       - name: Store artifacts
         uses: actions/upload-artifact@v3
