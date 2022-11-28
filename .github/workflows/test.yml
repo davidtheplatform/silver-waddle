@@ -2,7 +2,23 @@ name: compile-project
 run-name: Compile project
 on: [push]
 jobs:
-  compile:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: ls ${{ github.workspace }}
+      - uses: actions/checkout@v3
+
+      - name: Setup emsdk
+        uses: mymindstorm/setup-emsdk@v11
+        with:
+          # Make sure to set a version number!
+          version: 1.38.40
+          # This is the name of the cache folder.
+          # The cache folder will be placed in the build directory,
+          #  so make sure it doesn't conflict with anything!
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Verify
+        run: emcc -
+      
+      - name: Build
+        run: ls ${{ github.workspace }}
