@@ -1,24 +1,8 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+name: compile-project
+run-name: Compile project
 on: [push]
 jobs:
-  check-bats-version:
+  compile:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      
-
-      - name: Setup Emscripten toolchain
-        # You may pin to the exact commit or the version.
-        # uses: mymindstorm/setup-emsdk@29ba4851d6da084ffdc1e0fc390efadbd75df9d1
-        uses: mymindstorm/setup-emsdk@v11
-        with:
-          # Version to install
-          version: latest # optional, default is latest
-          # If true will not download any version of Emscripten. emsdk will still be added to PATH.
-          no-install: false # optional
-          # If true will not cache any downloads with tc.cacheDir.
-          no-cache: false # optional
-
-      - run: emcc test.cpp
-      - run: ls
+      - run: emsdk/upstream/emscripten/emcc test.cpp -o test.html
