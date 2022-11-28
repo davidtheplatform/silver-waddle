@@ -18,7 +18,13 @@ jobs:
           actions-cache-folder: 'emsdk-cache'
 
       - name: Verify
-        run: emcc -v
+        run: emcc test.cpp -o out/test.html
       
       - name: Build
         run: ls ${{ github.workspace }}
+        
+      - name: Store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-results
+          path: out
