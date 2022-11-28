@@ -18,7 +18,7 @@ jobs:
           actions-cache-folder: 'emsdk-cache'
 
       - name: Verify
-        run: emcc -
+        run: emcc -v
       
       - name: Build
         run: ls ${{ github.workspace }}
