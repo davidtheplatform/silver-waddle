@@ -5,4 +5,4 @@ jobs:
   compile:
     runs-on: ubuntu-latest
     steps:
-      - run: emsdk/upstream/emscripten/emcc test.cpp -o test.html
+      - run: ls ~
