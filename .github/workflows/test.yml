@@ -6,8 +6,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/cache@v3
         with:
           node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+      
+
+      - name: Setup Emscripten toolchain
+        # You may pin to the exact commit or the version.
+        # uses: mymindstorm/setup-emsdk@29ba4851d6da084ffdc1e0fc390efadbd75df9d1
+        uses: mymindstorm/setup-emsdk@v11
+        with:
+          # Version to install
+          version: latest # optional, default is latest
+          # If true will not download any version of Emscripten. emsdk will still be added to PATH.
+          no-install: false # optional
+          # If true will not cache any downloads with tc.cacheDir.
+          no-cache: false # optional
+
+      - run: emcc test.cpp
