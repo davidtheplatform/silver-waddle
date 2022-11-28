@@ -21,3 +21,4 @@ jobs:
           no-cache: false # optional
 
       - run: emcc test.cpp
+      - run: ls
