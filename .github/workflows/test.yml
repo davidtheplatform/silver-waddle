@@ -18,7 +18,9 @@ jobs:
           actions-cache-folder: 'emsdk-cache'
 
       - name: Build
-        run: emcc test.cpp -o out/test.html
+        run: |
+          mkdir out
+          emcc test.cpp -o out/test.html
         
       - name: Store artifacts
         uses: actions/upload-artifact@v3
